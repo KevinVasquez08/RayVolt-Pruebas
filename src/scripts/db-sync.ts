@@ -1,15 +1,16 @@
 import { DataSource } from 'typeorm';
 import * as dotenv from 'dotenv';
+import { entities } from '../database/entities';
 dotenv.config();
 
 const syncDataSource = new DataSource({
   type: 'postgres',
   host: process.env.DB_HOST || 'localhost',
-  port: parseInt(process.env.DB_PORT, 10) || 5432,
+  port: parseInt(process.env.DB_PORT ?? '', 10) || 5432,
   username: process.env.DB_USERNAME || 'postgres',
   password: process.env.DB_PASSWORD || 'postgres',
   database: process.env.DB_NAME || 'app_db',
-  entities: [],
+  entities,
   synchronize: true, // Solo se activa explícitamente en este script aislado
   logging: true,
 });
