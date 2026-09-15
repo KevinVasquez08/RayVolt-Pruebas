@@ -1,21 +1,17 @@
 import { DataSource } from 'typeorm';
 import * as dotenv from 'dotenv';
-import { User } from '../modules/users/entities/user.entity';
-import { Role } from '../modules/users/entities/role.entity';
-import { AuthIdentity } from '../modules/auth/entities/auth-identity.entity';
-import { RefreshToken } from '../modules/auth/entities/refresh-token.entity';
-import { DeviceToken } from '../modules/auth/entities/device-token.entity';
+import { entities, Role } from '../database/entities';
 
 dotenv.config();
 
 const syncDataSource = new DataSource({
   type: 'postgres',
   host: process.env.DB_HOST || 'localhost',
-  port: Number(process.env.DB_PORT ?? 10) || 5432,
+  port: Number(process.env.DB_PORT) || 5432,
   username: process.env.DB_USERNAME || 'postgres',
   password: process.env.DB_PASSWORD || 'postgres',
   database: process.env.DB_NAME || 'app_db',
-  entities: [User, Role, AuthIdentity, RefreshToken, DeviceToken],
+  entities,
   synchronize: true, // Solo se activa explícitamente en este script aislado
   logging: true,
 });

@@ -7,6 +7,7 @@ import { GoogleModule } from './integration/google/google.module';
 import { AppleModule } from './integration/apple/apple.module';
 import jwtConfig from './config/jwt.config';
 import databaseConfig from './config/database.config';
+import { VehiclesModule } from './modules/vehicles/vehicles.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import databaseConfig from './config/database.config';
     AuthModule,
     GoogleModule,
     AppleModule,
+    VehiclesModule,
   ],
 })
 export class AppModule {}
